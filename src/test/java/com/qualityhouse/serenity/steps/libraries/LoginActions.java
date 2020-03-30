@@ -16,8 +16,7 @@ public class LoginActions
     private HomePage homePage;
 
     @Step
-    public void logsInWithCredentials( User user )
-    {
+    public void logsInWithCredentials( User user ) throws InterruptedException {
         fillsFieldWithData( loginPage.emailField,
                             user.getEmail() );
         fillsFieldWithData( loginPage.passwordField,

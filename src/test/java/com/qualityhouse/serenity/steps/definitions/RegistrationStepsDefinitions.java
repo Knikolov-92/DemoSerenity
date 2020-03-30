@@ -28,8 +28,7 @@ public class RegistrationStepsDefinitions
     private RegistrationActions mitko;
 
     @Given( "^(?:.*) has started an account registration with \"(.*)\" email$" )
-    public void registrationProcessIsStarted( String email )
-    {
+    public void registrationProcessIsStarted( String email ) throws InterruptedException {
         mitko.startsRegistrationWithEmail( randomizeValue( email ) );
     }
 
@@ -52,8 +51,7 @@ public class RegistrationStepsDefinitions
     }
 
     @When( "^he submits his registration details$" )
-    public void heSubmitsHisRegistrationDetails()
-    {
+    public void heSubmitsHisRegistrationDetails() throws InterruptedException {
         mitko.clicksOn( REGISTER_BUTTON );
     }
 

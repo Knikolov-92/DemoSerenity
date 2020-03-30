@@ -38,8 +38,7 @@ public class LoginStepsDefinitions
     }
 
     @When( "^(?:.*) logs in with:$" )
-    public void johnLogsInWith( List<User> data )
-    {
+    public void johnLogsInWith( List<User> data ) throws InterruptedException {
         User user = data.get( 0 );
         ivancho.logsInWithCredentials( user );
     }

@@ -1,6 +1,7 @@
 package com.qualityhouse.serenity.steps.definitions;
 
 import com.qualityhouse.serenity.steps.libraries.BasesActions;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import net.thucydides.core.annotations.Steps;
 
@@ -24,5 +25,6 @@ public class CommonStepsDefinitions
     {
         assertThat( pesho.readsTextFromList( ERROR_MESSAGES_LIST ) ).containsExactlyInAnyOrderElementsOf( errorMessages );
     }
+
 }
 

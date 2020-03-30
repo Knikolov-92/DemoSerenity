@@ -52,7 +52,6 @@ Feature: Account Registration
       | Mr.   | John       | Snow      | password123 | 28-February-1985 | gate 13 | South | Alaska | 14253 | United States | 42342342343  | TheWall       | ??                           |
 
 
-  @debug
   Scenario: Unsuccessful Registration with many wrong data
   ! System should not allow user registration with invalid data
     Given John is on the login page

@@ -62,8 +62,7 @@ public class RegistrationActions
     }
 
     @Step
-    public void startsRegistrationWithEmail( String email )
-    {
+    public void startsRegistrationWithEmail( String email ) throws InterruptedException {
         fillsFieldWithData( loginPage.registrationMailField,
                             email );
         clicksOn( loginPage.createAnAccountButton );
