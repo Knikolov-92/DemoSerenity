@@ -139,15 +139,16 @@ public class BasesActions
         Assert.assertEquals(pageTitle, titleToCompareTo);
     }
 
+    @Step
+    public List<WebElementFacade> getsElementList(By locator) {
 
-    public ArrayList<WebElementFacade> getsElementList(String locatorCssOrXpath) {
+        List<WebElementFacade> listOfElements = currentPage.findAll(locator);
+        //System.out.println("Number of elements found: " +(listOfElements.size() ) );
 
-        ArrayList<WebElementFacade> arrayList = new ArrayList<>(currentPage.findAll(locatorCssOrXpath));
-        System.out.println("Number of elements found: " +(arrayList.size() ) );
-
-        return arrayList;
+        return listOfElements;
     }
 
+    @Step
     public void movesPointerToElement(WebElementFacade element) throws InterruptedException {
 
         Actions actions = new Actions(driver);
