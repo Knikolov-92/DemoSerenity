@@ -8,21 +8,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-@DefaultUrl( "http://automationpractice.com/index.php?id_category=8&controller=category" )
+
 public class ShoppingPage extends PageObject {
 
-    public final static String DRESSES_PAGE_URL = "http://automationpractice.com/index.php?id_category=8&controller=category";
-    public final static String DRESSES_PAGE_TITLE = "Dresses - My Store";
     public final static By PRODUCT_LIST_LOCATOR = By.cssSelector(".product_list.grid.row .product-container");
     public final static By BUTTON_ADD_TO_CART_LIST_LOCATOR = By.cssSelector(".btn-default.btn.ajax_add_to_cart_button.button");
     public final static By CART_PRODUCT_LIST_NAME_LOCATOR = By.cssSelector(".cart_block_list .cart-info .product-name");
     public final static By CART_PRODUCT_LIST_PRICE_LOCATOR = By.cssSelector(".cart_block_list .cart-info .price");
     public final static By PRODUCT_NAME_LIST_LOCATOR = By.cssSelector(".product-container .product-name");
     public final static By PRODUCT_PRICE_LIST_LOCATOR = By.cssSelector(".product-container .right-block .price.product-price");
-
-
-    @FindBy(how = How.XPATH, using = "//*[@id=\"block_top_menu\"]/ul/li[2]/a")
-    public WebElementFacade dressesLink;
 
     @FindBy(css = "[title='View my shopping cart'] .ajax_cart_quantity")
     public WebElementFacade cartProductQuantity;
@@ -45,17 +39,6 @@ public class ShoppingPage extends PageObject {
     @FindBy(css = ".price.cart_block_shipping_cost.ajax_cart_shipping_cost")
     public WebElementFacade cartShippingValue;
 
-
-
-
-    @FindBy(xpath ="//*[@id=\"center_column\"]/ul/li[1]/div/div[2]/div[1]/span")
-    public WebElementFacade dressProductPrice1;
-
-    @FindBy(xpath ="//*[@id=\"center_column\"]/ul/li[2]/div/div[2]/div[1]/span")
-    public WebElementFacade dressProductPrice2;
-
-    @FindBy(xpath ="//*[@id=\"center_column\"]/ul/li[3]/div/div[2]/div[1]/span")
-    public WebElementFacade dressProductPrice3;
 
 
 

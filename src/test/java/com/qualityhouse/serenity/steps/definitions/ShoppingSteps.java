@@ -1,32 +1,30 @@
 package com.qualityhouse.serenity.steps.definitions;
 
 import com.qualityhouse.serenity.page_objects.BasePage;
-import com.qualityhouse.serenity.page_objects.ShoppingPage;
+import com.qualityhouse.serenity.page_objects.DressesPage;
+import com.qualityhouse.serenity.page_objects.WomenPage;
 import com.qualityhouse.serenity.steps.libraries.BasesActions;
 import com.qualityhouse.serenity.steps.libraries.ShoppingActions;
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import junit.framework.Assert;
 import net.serenitybdd.core.pages.WebElementFacade;
-import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.WebDriver;
 
 import java.util.*;
 
-import static com.qualityhouse.serenity.page_objects.ShoppingPage.*;
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
+import static com.qualityhouse.serenity.page_objects.DressesPage.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 
 
 public class ShoppingSteps {
 
-    ShoppingPage dressPage;
+    DressesPage dressPage;
     BasePage basePage;
-
+    WomenPage womenPage;
     @Steps
     private BasesActions yakim;
     @Steps
@@ -39,10 +37,11 @@ public class ShoppingSteps {
         Thread.sleep(3000);
     }
 
-    @When("^John clicks on \"Dresses\" button$")
-    public void johnClicksOnButton() throws InterruptedException {
+    @Given("^John is on the women-shopping page$")
+    public void johnIsOnTheWomenShoppingPage() throws InterruptedException {
 
-        yakim.clicksOn(dressPage.dressesLink);
+        womenPage.open();
+        Thread.sleep(3000);
     }
 
     @When("^John adds the first ([3]) products to cart$")
@@ -66,6 +65,12 @@ public class ShoppingSteps {
 
             elementNumber++;
         }
+    }
+
+    @When("^John selects a product:$")
+    public void johnSelectsAProduct(DataTable productInfo) throws InterruptedException {
+
+       jakim.selectsAProductByNameAndPrice(productInfo);
     }
 
     @Then("^John should be on the Dresses-shopping page$")
@@ -99,8 +104,14 @@ public class ShoppingSteps {
     @Then("^John should see the empty cart on page$")
     public void johnShouldSeeTheEmptyCartOnPage() {
 
-        String expectednumberOfProductsInCart = "0";
+        String expectedNumberOfProductsInCart = "0";
 
-        jakim.checksCartProductsText(Integer.parseInt(expectednumberOfProductsInCart));
+        jakim.checksCartProductsText(Integer.parseInt(expectedNumberOfProductsInCart));
     }
+
+
+
+
+
+
 }

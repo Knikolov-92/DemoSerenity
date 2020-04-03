@@ -139,11 +139,11 @@ public class BasesActions
         Assert.assertEquals(pageTitle, titleToCompareTo);
     }
 
-    @Step
+
     public List<WebElementFacade> getsElementList(By locator) {
 
-        List<WebElementFacade> listOfElements = currentPage.findAll(locator);
-        //System.out.println("Number of elements found: " +(listOfElements.size() ) );
+        List<WebElementFacade> listOfElements = new ArrayList<>(currentPage.findAll(locator));
+        System.out.println("Number of elements found: " +(listOfElements.size() ) );
 
         return listOfElements;
     }

@@ -1,9 +1,8 @@
 package com.qualityhouse.serenity.steps.libraries;
 
-import com.qualityhouse.serenity.entities.Product;
 import com.qualityhouse.serenity.page_objects.BasePage;
-import com.qualityhouse.serenity.page_objects.ShoppingPage;
-import com.qualityhouse.serenity.steps.definitions.ShoppingSteps;
+import com.qualityhouse.serenity.page_objects.DressesPage;
+import cucumber.api.DataTable;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.annotations.Steps;
@@ -11,30 +10,22 @@ import org.assertj.core.api.SoftAssertions;
 
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import static com.qualityhouse.serenity.page_objects.ShoppingPage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ShoppingActions {
 
-    private ShoppingPage dressPage;
+    private DressesPage dressPage;
     BasePage currentPage;
     private  SoftAssertions softly = new SoftAssertions();
 
     @Steps
     private BasesActions kolio;
 
-    public String getsProductName(String locator) {
 
-        return currentPage.find(locator).getTextContent().trim();
-    }
-
-    public String getsProductPrice(String locator) {
-
-        return currentPage.find(locator).getTextContent().trim().substring(1);
-    }
     @Step
-
     public void checksCartProductsQuantity(String expectedQuantity) {
 
         if (Integer.parseInt(expectedQuantity) != 0) {
@@ -125,6 +116,30 @@ public class ShoppingActions {
 
         softly.assertThat(totalPrice)
                 .isEqualTo(Float.parseFloat(dressPage.cartPriceTotal.getTextContent().trim().substring(1)) );
+    }
+
+    @Step
+    public void selectsAProductByNameAndPrice(DataTable productInfo) throws InterruptedException {
+
+        List<Map<String, String>> data = productInfo.asMaps(String.class, String.class);
+        List<WebElementFacade> listOfProductNamesOnPage = kolio.getsElementList(PRODUCT_NAME_LIST_LOCATOR);
+        List<WebElementFacade> listOfProductPricesOnPage = kolio.getsElementList(PRODUCT_PRICE_LIST_LOCATOR);
+
+        for (int i = 0; i < listOfProductNamesOnPage.size(); i++) {
+
+            if (listOfProductNamesOnPage.get(i).getTextContent().trim()
+                    .equals(data.get(0).get("name"))
+                    && listOfProductPricesOnPage.get(i).getTextContent().trim().substring(1)
+                    .equals(data.get(0).get("price")) )
+            {
+                kolio.clicksOn(listOfProductNamesOnPage.get(i));
+                break;
+            }
+            else {
+
+                System.out.println("No product with input name and price found");
+            }
+        }
     }
 
 }
